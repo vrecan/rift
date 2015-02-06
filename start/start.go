@@ -19,8 +19,8 @@ func Run() {
 	//start signal handling routine
 	go Death(signals, shutdown, wg)
 
-	pushURLs := []string{"tcp://10.1.10.42:13100", "tcp://10.1.10.172:13100"}
-	pullRift, err := rift.NewPullRift("tcp://10.128.72.116:13100", pushURLs)
+	pushURLs := []string{"tcp://10.1.10.42:13109", "tcp://10.1.10.172:13100"}
+	pullRift, err := rift.NewPullRift("tcp://10.1.10.42:13100", pushURLs)
 	if nil != err {
 		log.Critical("Failed to create rift: ", err)
 	}

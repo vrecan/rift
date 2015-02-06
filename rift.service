@@ -1,0 +1,15 @@
+[Unit]
+Description=Logrhythm Rift Process that splits zmq pull streams
+After=syslog.target network.target remote-fs.target nss-lookup.target network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=persistent
+TimeoutSec=45s
+Restart=always
+WorkingDirectory=/home/vrecan/go/src/github.com/vrecan/rift
+ExecStart=/home/vrecan/go/bin/rift
+
+[Install]
+WantedBy=multi-user.target
