@@ -2,6 +2,7 @@ package start
 
 import (
 	log "github.com/cihub/seelog"
+	"github.com/vrecan/rift/c"
 	rift "github.com/vrecan/rift/pullrift"
 	"os"
 	"os/signal"
@@ -10,6 +11,11 @@ import (
 
 func Run() {
 	log.Info("Started")
+	conf, err := c.GetConf("c/c.yml")
+	if nil != err {
+		log.Error(err)
+	}
+	log.Info("conf: ", conf)
 
 	shutdown := make(chan int, 1)
 	signals := make(chan os.Signal, 1)
@@ -18,20 +24,26 @@ func Run() {
 	wg.Add(1)
 	//start signal handling routine
 	go Death(signals, shutdown, wg)
+	rifts := make([]rift.PullRift, len(conf.Rifts))
+	for _, r := range conf.Rifts {
 
-	pushURLs := []string{"tcp://10.1.10.42:13100", "tcp://10.1.10.172:13100"}
-	pullRift, err := rift.NewPullRift("tcp://10.128.72.116:13100", pushURLs)
-	if nil != err {
-		log.Critical("Failed to create rift: ", err)
+		nRift, err := rift.NewPullRift(r.Pull, r.Push)
+		if nil == err {
+			go nRift.Run()
+			rifts = append(rifts, nRift)
+		} else {
+			log.Error("Failed to construct rift... : ", err)
+		}
 	}
-	go pullRift.Run()
 
 	//hanndle shutdown
 	wg.Wait()
 	log.Info("Shutting down go routines")
 	close(shutdown)
 	close(signals)
-	pullRift.Close()
+	for _, r := range rifts {
+		r.Close()
+	}
 	log.Info("Shutdown complete")
 }
 

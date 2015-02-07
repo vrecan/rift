@@ -1,0 +1,9 @@
+rifts:
+# indexer queue
+  - name: Indexer queue
+    pull: tcp://0.0.0.0:13100
+    push:
+      - URL: tcp://10.1.10.42:13109
+        sampleRate: 100
+      - URL: tcp://10.1.10.72:13100 
+        sampleRate: 100     
