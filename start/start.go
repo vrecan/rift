@@ -26,7 +26,6 @@ func Run() {
 	go Death(signals, shutdown, wg)
 	rifts := make([]rift.PullRift, len(conf.Rifts))
 	for _, r := range conf.Rifts {
-
 		nRift, err := rift.NewPullRift(r.Pull, r.Push)
 		if nil == err {
 			go nRift.Run()
