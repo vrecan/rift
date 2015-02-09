@@ -13,7 +13,7 @@ before_install:
   - sudo ldconfig
 install:
 - go get github.com/tools/godep
-- go get code.google.com/p/go.tools/cmd/cover
+- go get golang.org/p/go.tools/cmd/cover
 - go get github.com/onsi/ginkgo/goconvey
 - export PATH=$PATH:$HOME/gopath/bin
 - $HOME/gopath/bin/godep go install github.com/vrecan/rift
