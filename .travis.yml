@@ -11,7 +11,7 @@ before_install:
   - sudo make install
   - sudo su -c "echo '/usr/local/lib' > /etc/ld.so.conf.d/local.conf"
   - sudo ldconfig
-  - cd $GOPATH/src/github.com/vrecan/rift
+  - cd ~/gopath/src/github.com/vrecan/rift
 install:
 - go get github.com/tools/godep
 - go get golang.org/x/tools/cmd/cover
