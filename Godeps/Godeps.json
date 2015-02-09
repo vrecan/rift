@@ -1,6 +1,9 @@
 {
 	"ImportPath": "github.com/vrecan/rift",
 	"GoVersion": "go1.4",
+	"Packages": [
+		"./..."
+	],
 	"Deps": [
 		{
 			"ImportPath": "github.com/cihub/seelog",
@@ -8,8 +11,17 @@
 			"Rev": "65c61944370449dbba8b5b587e9f85826eba11c7"
 		},
 		{
+			"ImportPath": "github.com/jtolds/gls",
+			"Rev": "f1ac7f4f24f50328e6bc838ca4437d1612a0243c"
+		},
+		{
 			"ImportPath": "github.com/pebbe/zmq4",
 			"Rev": "10fadfeb51bd5d0250d09a0d31f9b53ed399b6ae"
+		},
+		{
+			"ImportPath": "github.com/smartystreets/goconvey/convey",
+			"Comment": "1.5.0-374-g89ecdf0",
+			"Rev": "89ecdf0edda4e33c53efa3e5f4e20914e52a3035"
 		},
 		{
 			"ImportPath": "gopkg.in/yaml.v2",
