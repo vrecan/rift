@@ -9,6 +9,7 @@ import (
 )
 
 var InvalidSampleRateError = errors.New("Invalid sample rate, it must be between 1 and 100")
+var NoValidRifts = errors.New("No valid rifts created")
 
 type PullRift struct {
 	pull  *zmq.Socket
@@ -56,6 +57,11 @@ func NewPullRift(rcvURL string, confs []c.PullConf) (rift PullRift, err error) {
 		}
 		rift.rifts = append(rift.rifts, push)
 	}
+
+	if rift.RiftSize() <= 0 {
+		err = NoValidRifts
+	}
+
 	return rift, err
 }
 
@@ -77,6 +83,11 @@ func (r *PullRift) Run() {
 			log.Error("Failled to pull from socket: ", err)
 		}
 	}
+}
+
+//Returns the number of queues we are sending to
+func (r *PullRift) RiftSize() (size int) {
+	return len(r.rifts)
 }
 
 //Close our sockets.
