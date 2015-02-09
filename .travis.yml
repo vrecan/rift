@@ -17,5 +17,5 @@ install:
 - go get golang.org/x/tools/cmd/cover
 - go get github.com/smartystreets/goconvey
 - export PATH=$PATH:$HOME/gopath/bin
-- $HOME/gopath/bin/godep go install github.com/vrecan/rift
-script: go test -v ./...
+- godep go install github.com/vrecan/rift
+script: godep go test -v ./...
