@@ -2,7 +2,15 @@ os:
  - linux
 language: go
 before_install:
-- sudo apt-get install libzmq4-dev
+  - sudo apt-get remove libzmq1
+  - wget http://download.zeromq.org/zeromq-4.0.4.tar.gz
+  - tar -xf zeromq-4.0.4.tar.gz
+  - cd zeromq-4.0.4
+  - ./configure
+  - make
+  - sudo make install
+  - sudo su -c "echo '/usr/local/lib' > /etc/ld.so.conf.d/local.conf"
+  - sudo ldconfig
 install:
 - go get github.com/tools/godep
 - go get code.google.com/p/go.tools/cmd/cover
