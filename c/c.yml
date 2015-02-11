@@ -5,7 +5,7 @@ rifts:
     push:
       - URL: tcp://10.1.10.42:13109
         sampleRate: 100
-      - URL: tcp://10.1.10.72:13100 
+      - URL: tcp://10.1.10.172:13100 
         sampleRate: 100  
       - URL: tcp://10.1.10.128:13100
         sampleRate: 100 
