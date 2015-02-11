@@ -6,4 +6,6 @@ rifts:
       - URL: tcp://10.1.10.42:13109
         sampleRate: 100
       - URL: tcp://10.1.10.72:13100 
-        sampleRate: 100     
+        sampleRate: 100  
+      - URL: tcp://10.1.10.128:13100
+        sampleRate: 100 
