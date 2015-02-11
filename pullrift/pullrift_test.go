@@ -12,7 +12,7 @@ func TestPullRift(t *testing.T) {
 		pullConf := []c.PullConf{}
 		rift, err := NewPullRift("tcp://127.0.0.1:9900", pullConf)
 		defer rift.Close()
-		So(err, ShouldEqual, NoValidRifts)
+		So(err, ShouldEqual, NoValidPushers)
 
 	})
 

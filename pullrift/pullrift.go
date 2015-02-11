@@ -10,7 +10,7 @@ import (
 )
 
 var InvalidSampleRateError = errors.New("Invalid sample rate, it must be between 1 and 100")
-var NoValidRifts = errors.New("No valid rifts created")
+var NoValidPushers = errors.New("No valid pushers created")
 
 type stats struct {
 	riftQueue string
@@ -22,7 +22,7 @@ type stats struct {
 type PullRift struct {
 	URL        string
 	pull       *zmq.Socket
-	pushers    []PushSocket
+	pushers    []*PushSocket
 	logChannel chan *stats
 	poller     *zmq.Poller
 }
@@ -72,11 +72,11 @@ func NewPullRift(rcvURL string, confs []c.PullConf) (rift PullRift, err error) {
 			log.Error("Failed to rift to url: ", conf.URL, " error: ", err_)
 			continue
 		}
-		rift.pushers = append(rift.pushers, push)
+		rift.pushers = append(rift.pushers, &push)
 	}
 
 	if rift.RiftSize() <= 0 {
-		err = NoValidRifts
+		err = NoValidPushers
 	}
 
 	return rift, err
@@ -114,6 +114,7 @@ func (r *PullRift) Run() {
 								if nil != err {
 									push.failed++
 								} else {
+
 									push.success++
 								}
 							}
