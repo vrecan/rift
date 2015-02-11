@@ -46,6 +46,8 @@ func NewPushSocket(url string, sampleRate int) (push PushSocket, err error) {
 	}
 	push.URL = url
 	push.SampleRate = sampleRate
+	push.push.SetRcvhwm(10000)
+	push.push.SetSndhwm(10000)
 	err = push.push.Connect(url)
 	return push, err
 }
@@ -60,6 +62,8 @@ func NewPullRift(rcvURL string, confs []c.PullConf) (rift PullRift, err error) {
 	if nil != err {
 		return rift, err
 	}
+	rift.pull.SetRcvhwm(10000)
+	rift.pull.SetSndhwm(10000)
 	err = rift.pull.Bind(rcvURL)
 	rift.URL = rcvURL
 	if nil != err {
