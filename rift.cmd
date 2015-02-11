@@ -8,7 +8,7 @@
 @REM          fi
 @REM          exec /bin/sh -c "$java -Dlogback.configurationFile=$logback -jar $jarPath"
 SET APP=rift
-./rift.exe
+rift.exe
 goto :finally 
 
 :err
