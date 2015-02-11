@@ -8,7 +8,7 @@ Type=simple
 User=persistent
 TimeoutSec=45s
 Restart=always
-WorkingDirectory=/home/vrecan/go/src/github.com/vrecan/rift
+WorkingDirectory=/home/vrecan/go/src/github.com/vrecan/rift/
 ExecStart=/home/vrecan/go/bin/rift
 
 [Install]
