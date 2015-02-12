@@ -1,5 +1,4 @@
 rifts:
-# indexer queue
   - name: Indexer queue
     pull: tcp://0.0.0.0:13100
     push:
@@ -9,3 +8,12 @@ rifts:
         sampleRate: 100  
       - URL: tcp://10.1.10.128:13100
         sampleRate: 100 
+  - name: Stats queue
+    pull: tcp://0.0.0.0:13200
+    push:
+      - URL: tcp://10.1.10.42:13200
+        sampleRate: 100
+      - URL: tcp://10.1.10.172:13200
+        sampleRate: 100
+      - URL: tcp://10.1.10.128:13200
+        sampleRate: 100
