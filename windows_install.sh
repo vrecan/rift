@@ -18,4 +18,3 @@ cp $minigw_bin/libwinpthread-1.dll .
 cp $minigw_bin/libgcc_s_seh-1.dll .
 cp $minigw_bin/libstdc++-6.dll .
 cp ~/zeromq/src/.libs/libzmq.dll .
-
